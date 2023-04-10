@@ -1,7 +1,9 @@
 const { ethers } = require("ethers");
+require("dotenv").config();
+const { API_KEY } = process.env;
 
 const provider = new ethers.providers.JsonRpcProvider(
-  `https://mainnet.infura.io/v3/55fe2b930c1e49e88f098b1a062cd01b`
+  `https://mainnet.infura.io/v3/${API_KEY}`
 );
 
 const queryData = async () => {
