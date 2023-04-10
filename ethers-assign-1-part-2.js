@@ -3,9 +3,9 @@ const { ethers } = require("ethers");
 const abi = require("./abi");
 require("dotenv").config();
 
-const { CONTRACT_ADDRESS, PRIVATE_KEY } = process.env;
+const { CONTRACT_ADDRESS, PRIVATE_KEY, API_KEY } = process.env;
 const provider = new ethers.providers.JsonRpcProvider(
-  `https://goerli.infura.io/v3/55fe2b930c1e49e88f098b1a062cd01b`
+  `https://goerli.infura.io/v3/${API_KEY}`
 );
 
 const contractInteraction = async () => {

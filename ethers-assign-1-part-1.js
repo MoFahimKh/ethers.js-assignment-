@@ -4,10 +4,10 @@ const abi = require("./abi");
 const walletAddress = require("./walletAddress");
 
 require("dotenv").config();
-const { PRIVATE_KEY } = process.env;
+const { PRIVATE_KEY, API_KEY } = process.env;
 
 const provider = new ethers.providers.JsonRpcProvider(
-  `https://goerli.infura.io/v3/55fe2b930c1e49e88f098b1a062cd01b`
+  `https://goerli.infura.io/v3/${API_KEY}`
 );
 
 const contractInteraction = async () => {
@@ -25,9 +25,7 @@ const contractInteraction = async () => {
     chainId: 5,
   };
   const signer = new ethers.Wallet(PRIVATE_KEY, provider);
-  // console.log(signer);
   const signRawTnx = await signer.signTransaction(rawTnx);
-  console.log(signRawTnx);
   const sendTrans = await provider.sendTransaction(signRawTnx);
   console.log("sent transaction :", sendTrans);
 };
