@@ -14,6 +14,7 @@ const contractInteraction = async () => {
   const walletContract = new ethers.Contract(walletAddress, abi, provider);
   const stateVaraibleValue = await walletContract.name(); // getting value of state variable from contract
   console.log(stateVaraibleValue);
+  //setting via raw transaction object
   const rawTnx = {
     nonce: 7,
     gasPrice: 100,
