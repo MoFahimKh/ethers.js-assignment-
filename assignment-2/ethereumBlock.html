@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Ethereum Page</title>
+  </head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      background-color: #3f51b5;
+      color: white;
+      margin: 0;
+      padding: 20px;
+    }
+    table {
+      border-collapse: collapse;
+      margin: 20px;
+      width: 80%;
+    }
+    th {
+      background-color: #f2f2f2;
+      font-weight: normal;
+      text-align: left;
+    }
+    td {
+      border: 1px solid #ddd;
+      padding: 10px;
+    }
+  </style>
+  <body>
+    <h1>Block Explorer</span></h1>
+    <table>
+      <tr>
+        <td>Block Height:</td>
+        <td id="blockHeight"></td>
+      </tr>
+      <tr>
+        <td>Hash:</td>
+        <td id="hash"></td>
+      </tr>
+      <tr>
+        <td>Parent Hash:</td>
+        <td id="parentHash"></td>
+      </tr>
+      <tr>
+        <td>Timestamp:</td>
+        <td id="timestamp"></td>
+      </tr>
+      <tr>
+        <td>Gas Limit:</td>
+        <td id="gasLimit"></td>
+      </tr>
+      <tr>
+        <td>Gas Used:</td>
+        <td id="gasUsed"></td>
+      </tr>
+      <tr>
+        <td>Miner:</td>
+        <td id="miner"></td>
+      </tr>
+      <tr>
+        <td>Base Fee Per Gas:</td>
+        <td id="baseFeePerGas"></td>
+      </tr>
+    </table>
+  </body>
+</html>
+ <script type="module">
+  import { ethers } from "https://cdn-cors.ethers.io/lib/ethers-5.5.4.esm.min.js";
+
+const provider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/55fe2b930c1e49e88f098b1a062cd01b`);
+
+const blockHeightEl = document.getElementById("blockHeight");
+const signerEl = document.getElementById("signer");
+const balanceEl = document.getElementById("balance");
+  const hashEl = document.getElementById("hash");
+  const parentHashEl = document.getElementById("parentHash");
+  const timestampEl = document.getElementById("timestamp");
+  const gasLimitEl = document.getElementById("gasLimit");
+  const gasUsedEl = document.getElementById("gasUsed");
+  const minerEl = document.getElementById("miner");
+  const baseFeePerGasEl = document.getElementById("baseFeePerGas");
+
+const queryData = async () => {
+  const blockHeight = (await provider.getBlock()).number;
+  blockHeightEl.textContent = blockHeight;
+  const hash =  (await provider.getBlock()).hash;
+  hashEl.textContent = hash;
+  const parentHash = (await provider.getBlock()).parentHash;
+  parentHashEl.textContent = parentHash;
+  const timestamp = (await provider.getBlock()).timestamp;
+  timestampEl.textContent = timestamp;
+  const gasLimit = (await provider.getBlock()).gasLimit;
+  gasLimitEl.textContent = gasLimit;
+  const gasUsed = (await provider.getBlock()).gasUsed;
+  gasUsedEl.textContent = gasUsed;
+  const miner = (await provider.getBlock()).miner;
+  minerEl.textContent = miner;
+  const baseFeePerGas = (await provider.getBlock()).baseFeePerGas;
+  baseFeePerGasEl.textContent=baseFeePerGas;
+
+};
+
+queryData();
+
+</script> 
