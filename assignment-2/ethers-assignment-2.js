@@ -5,26 +5,15 @@ const provider = new ethers.providers.JsonRpcProvider(
 );
 
 const queryData = async () => {
-  const {
-    number,
-    hash,
-    parentHash,
-    timestamp,
-    gasLimit,
-    gasUsed,
-    miner,
-    baseFeePerGas,
-  } = await provider.getBlock();
-
+  const block = await provider.getBlock();
   console.log("================= BLOCK DETAILS ================= ");
-  console.log(`|BLOCK HEIGHT : ${number}`);
-  console.log(`|HASH : ${hash}`);
-  console.log(`|PARENT HASH : ${parentHash}`);
-  console.log(`|TIMESTAMP : ${timestamp}`);
-  console.log(`|GAS LIMIT : ${gasLimit}`);
-  console.log(`|GAS USED : ${gasUsed}`);
-  console.log(`|MINER : ${miner}`);
-  console.log(`|BASE FEE PER GAS : ${baseFeePerGas}`);
+  console.log(`|BLOCK HEIGHT : ${block.number}`);
+  console.log(`|HASH : ${block.hash}`);
+  console.log(`|PARENT HASH : ${block.parentHash}`);
+  console.log(`|TIMESTAMP : ${block.timestamp}`);
+  console.log(`|GAS LIMIT : ${block.gasLimit}`);
+  console.log(`|GAS USED : ${block.gasUsed}`);
+  console.log(`|MINER : ${block.miner}`);
+  console.log(`|BASE FEE PER GAS : ${block.baseFeePerGas}`);
 };
-
 queryData();
