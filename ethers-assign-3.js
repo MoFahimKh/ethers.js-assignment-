@@ -10,15 +10,6 @@ const provider = new ethers.providers.JsonRpcProvider(
 
 const usdtInteraction = async () => {
   const usdtContract = new ethers.Contract(USDT_ADDRESS, usdtAbi, provider);
-  // const latestBlockNumber = await provider.getBlockNumber(USDT_ADDRESS); // latest block number for transfer function in USDT
-  // console.log(latestBlockNumber);
-  // const latestBlockTimestamp = (await provider.getBlock("latest")).timestamp;
-  // console.log(latestBlockTimestamp);
-  // const BlockTimestampHourAgo = latestBlockTimestamp - 3600000;
-  // console.log(BlockTimestampHourAgo);
-  // let blockNumberHourAgo = await provider.getBlock();
- 
-
   const currentBlockNumber = await provider.getBlockNumber();
   console.log(currentBlockNumber);
   const currentBlock = await provider.getBlock(currentBlockNumber);
@@ -29,7 +20,7 @@ const usdtInteraction = async () => {
     const block = await provider.getBlock(blockNumber);
     if (block.timestamp < oneHourAgoTimestamp) {
       console.log(`Block ${blockNumHourAgo} blocknumber one hour ago!`);
-       blockNumHourAgo = blockNumber ;
+      blockNumHourAgo = blockNumber;
       break;
     }
     blockNumber--;
